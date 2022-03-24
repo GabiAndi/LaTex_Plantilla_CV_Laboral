@@ -39,7 +39,7 @@
 {
     colorlinks=true,
     linkcolor=mainblue,
-    filecolor=mainblue,      
+    filecolor=mainblue,
     urlcolor=mainblue,
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
