@@ -5,7 +5,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%% Paquetes necesarios %%%%%%%%%%%%%%%%%%%%%
-\RequirePackage[sfdefault]{GoSans}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
@@ -17,8 +16,14 @@
 \RequirePackage{pgffor}
 \RequirePackage{marvosym}
 \RequirePackage{parskip}
-\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.2cm,nohead,nofoot]{geometry}
+\RequirePackage[a4paper,left=7.6cm,top=0.1cm,right=1cm,bottom=0.2cm,nohead,nofoot]{geometry}
 \RequirePackage{hyperref}
+\RequirePackage{charter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%% Selección de fuente %%%%%%%%%%%%%%%%%%%%
+\renewcommand*\familydefault{bch}
+\fontfamily{\familydefault}\selectfont
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%% Opciones de documento %%%%%%%%%%%%%%%%%%%%
@@ -64,7 +69,8 @@
 \newlength{\TotalSectionLength}
 \newlength{\SectionTitleLength}
 
-\newcommand{\profilesection}[1]{
+\newcommand{\profilesection}[1]
+{
 	\setlength\TotalSectionLength{\linewidth}
 	\settowidth{\SectionTitleLength}{\huge #1 }
 	\addtolength\TotalSectionLength{-\SectionTitleLength}
@@ -85,45 +91,42 @@
 \newcommand{\cvjobtitle}[1]{\renewcommand{\cvjobtitle}{#1}}
 
 % Informacion de contacto
-\newcommand*\icon[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt, fill=mainblue,mainblue,text=white] (char) {#1};}}
+\newcommand*\icon[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt,fill=mainblue,mainblue,text=white](char){#1};}}
 
 % Barras de habilidades
-\newcommand\skills[1]{ 
-	\renewcommand{\skills}{
+\newcommand\skills[1]
+{ 
+	\renewcommand{\skills}
+	{
 		\begin{tikzpicture}
-			\foreach [count=\i] \x/\y in {#1}{
-				\draw[fill=maingray,maingray] (0,\i) rectangle (6,\i+0.4);
-				\draw[fill=white,mainblue](0,\i) rectangle (\y,\i+0.4);
-				\node [above right] at (0,\i+0.4) {\x};
+			\foreach [count=\i] \x/\y in {#1}
+			{
+				\draw[fill=maingray,maingray] (0,\i) rectangle (10*0.6,\i+0.4);
+				\draw[fill=white,mainblue](0,\i) rectangle (\y*0.6,\i+0.4);
+				\node[above right] at (0,\i+0.4) {\x};
 			}
 		\end{tikzpicture}
-	}
-}
-
-% Texto de habilidades
-\newcommand\skillstext[1]{ 
-	\renewcommand{\skillstext}{
-		\begin{flushleft}
-			\foreach [count=\i] \x/\y in {#1}{ 
-				\x$ \star $\y
-			}
-		\end{flushleft}
 	}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%% Barra lateral %%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\makeprofile}{
+\newcommand{\makeprofile}
+{
 	\begin{tikzpicture}[remember picture,overlay]
-   		\node [rectangle, fill=sidecolor, anchor=north, minimum width=9cm, minimum height=\paperheight+1cm] (box) at (-5cm,0.5cm){};
+   		\node[rectangle,fill=sidecolor,anchor=north,minimum width=9cm,minimum height=\paperheight+1cm](box) at (-5cm,0.5cm){};
 	\end{tikzpicture}
 
 	\begin{textblock}{6}(0.5, 0.2)
-		\ifthenelse{\equal{\cvprofilepic}{}}{}{
+		\ifthenelse{\equal{\cvprofilepic}{}}{}
+		{
 			\begin{center}
 				\begin{tikzpicture}[x=\imagescale,y=-\imagescale]
 					\clip (600/2, 567/2) circle (567/2);
-					\node[anchor=north west, inner sep=0pt, outer sep=0pt] at (0,0) {\includegraphics[width=\imagewidth]{\cvprofilepic}};
+					\node[anchor=north west,inner sep=0pt,outer sep=0pt] at (0,0)
+					{
+						\includegraphics[width=\imagewidth]{\cvprofilepic}
+					};
 				\end{tikzpicture}
 			\end{center}
 		}
@@ -142,7 +145,8 @@
 			\ifthenelse{\equal{\cvmail}{}}{}{\textsc{\large\icon{@}} & \href{mailto:\cvmail}{\cvmail}}
 		\end{tabular}
 
-		\ifthenelse{\equal{\aboutme}{}}{}{
+		\ifthenelse{\equal{\aboutme}{}}{}
+		{
 			\profilesection{Sobre mí}
 			\begin{flushleft}
 				\aboutme
@@ -152,42 +156,22 @@
 		\profilesection{Habilidades}
 
 		\skills
-		\skillstext
 		\scriptsize
 	\end{textblock}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%% Caja de titulo %%%%%%%%%%%%%%%%%%%%%%%
-\newcommand*\round[2]{
-	\tikz[baseline=(char.base)]\node[anchor=north west, draw,rectangle, rounded corners, inner sep=1.6pt, minimum size=5.5mm, text height=3.6mm, fill=#2,#2,text=white](char){#1};%
+\newcommand*\round[2]
+{
+	\tikz[baseline=(char.base)]\node[anchor=north west,draw,rectangle,rounded corners=0.1cm,inner sep=1.6pt,minimum size=6.8mm,text height=3.8mm,fill=#2,#2,text=white](char){#1};%
 }
 
-\newcounter{colorCounter}
-\newcommand{\sectioncolor}[1]{
-	{
-		\round{#1}{
-			\ifcase\value{colorCounter}%
-			maingray\or%
-			mainblue\or%
-			maingray\or%
-			mainblue\or%
-			maingray\or%
-			mainblue\or%
-			maingray\or%
-			mainblue\or%
- 			maingray\or%
-			mainblue\else%
-			maingray\fi%
-		}
-	}
-	\stepcounter{colorCounter}
-}
-
-\renewcommand{\section}[1]{
+\renewcommand{\section}[1]
+{
 	{
 		\color{gray}
-		\Large\sectioncolor{#1}
+		\Large\round{#1}{mainblue}
 	}
 }
 
