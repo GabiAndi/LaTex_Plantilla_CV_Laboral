@@ -1,0 +1,130 @@
+%%%%%%%%%%%%%%%%%%%%%% Tipo de documento %%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%% Configuración de paquetes %%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[a4paper,left=15mm,right=15mm,top=15mm,bottom=15mm,bindingoffset=0mm]{geometry}
+\usepackage{xcolor-material}
+\usepackage{charter}
+\usepackage{hyperref}
+\usepackage{sectsty}
+\usepackage{graphicx}
+\usepackage{multicol}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%% Selección de fuente %%%%%%%%%%%%%%%%%%%%
+\renewcommand*\familydefault{bch}
+\fontfamily{\familydefault}\selectfont
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%% Configuración de links y metadatos %%%%%%%%%%%%%
+\hypersetup{
+    % Metadatos
+    pdftitle=CV,
+    pdfauthor=CV,
+    % Links
+    colorlinks=true,
+    linkcolor=MaterialIndigo700,
+    filecolor=MaterialIndigo700,      
+    urlcolor=MaterialIndigo700,
+    citecolor=MaterialIndigo700
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%% Configuración de paginas %%%%%%%%%%%%%%%%%%%
+\pagestyle{empty}
+
+\sectionfont{
+    \large
+    \sectionrule{0pt}{0pt}{-5pt}{1pt}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% Macros del documento %%%%%%%%%%%%%%%%%%%%%
+\newcommand{\itemspace}{\vspace*{0.5cm}}
+
+\newcommand{\profile}[4]{
+    \noindent\begin{minipage}[c]{0.25\textwidth}
+        \includegraphics[width=\linewidth]{#1}
+    \end{minipage}
+    \hspace*{0.05\textwidth}
+    \begin{minipage}[c]{0.7\textwidth}
+        \begin{center} \Huge #2 \normalsize \end{center} \par
+        \vspace*{-0.7cm}
+        \begin{center} \large \textsl{#3} \normalsize \end{center} \par
+        \noindent #4 \par
+    \end{minipage}
+}
+
+\newcommand{\info}[2]{
+    \noindent
+    \parbox{3.5cm}{\textsl{#1:}}
+    #2 \par
+}
+
+\newcommand{\detail}[4]{
+    \noindent \textbf{#1}
+    \hfill 
+    \framebox{\parbox{6em}{\centering\textbf{#2}}} \par
+    \noindent \textit{#3} \par
+    \vspace*{0.5em}
+    \noindent \small #4 
+    \normalsize \par
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% Inicio del documento %%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\profile{src/images/foto.jpg}{Nombre y apellido}{Desarrollador de sistemas embebidos}{
+    Apasionado por la electrónica y programación de bajo nivel. Me gusta investigar y aprender sobre nuevas tecnologías, ademas de ampliar mis conocimentos en sistemas de control y automatización.
+}
+
+\section*{Información}
+
+\info{Nacimiento}{fecha de nacimiento}
+\info{Teléfono}{número de teléfono}
+\info{Email}{\href{mailto:mail}{mail}}
+\info{Residencia}{lugar de residencia}
+\info{GitHub}{\href{https://www.github.com}{enlace a página web}}
+\info{LinkedIn}{\href{https://www.linkedin.com}{enlace a LinkedIn}}
+
+\section*{Experiencia}
+
+\detail{Primer nombre de puesto}{Actualidad}{Nombre de la empresa}{
+    \begin{itemize}
+        \item{Primera tarea desarrollada.}
+        \item{Segunda tarea desarrollada.}
+    \end{itemize}
+}
+\itemspace
+\detail{Segundo nombre de puesto}{2020--2023}{Nombre de la empresa}{
+    \begin{itemize}
+        \item{Primera tarea desarrollada.}
+        \item{Segunda tarea desarrollada.}
+    \end{itemize}
+}
+
+\section*{Educación}
+
+\detail{Carrera de grado}{2017--2022}{Lugar de estudio}{}
+\itemspace
+\detail{Secundario}{2016}{Lugar de estudio}{}
+
+\section*{Habilidades técnicas}
+
+\info{Programación}{C, C++, C\#, Python, Java, Dart}
+\info{IDEs}{Qt, STMCubeIDE, Microchip Studio, Arduino, Android Studio, Eclipse}
+\info{Sistemas}{Linux, Windows, Android}
+\info{Herramientas}{Markdown, LaTex, Git, Bash, VSCode, Inventor, Autocad, KiCad}
+
+\section*{Idiomas}
+
+\info{Español}{Nativo}
+\info{Ingles}{A1}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
